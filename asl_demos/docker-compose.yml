@@ -1,0 +1,72 @@
+services:
+
+  php:
+    image: php:7-fpm
+    volumes:
+      - ./php:/app
+    working_dir: /app
+    ports:
+      - "3002:9000"
+
+  ruby:
+    image: ruby:3.0
+    volumes:
+      - ./ruby:/app
+    working_dir: /app
+    command: ruby app.rb
+    ports:
+      - "3003:4567"
+
+  rust:
+    image: rust:latest
+    volumes:
+      - ./rust:/app
+    working_dir: /app
+    command: cargo run
+    ports:
+      - "3000:8082"
+
+  golang:
+    image: golang:latest
+    volumes:
+      - ./golang:/app
+    working_dir: /app
+    command: go run main.go
+    ports:
+      - "3004:8080"
+
+  java:
+    image: openjdk:latest
+    volumes:
+      - ./java:/app
+    working_dir: /app
+    command: bash -c "javac Main.java && java Main"
+    ports:
+      - "3005:8080"
+
+  python:
+    image: python:latest
+    volumes:
+      - ./python:/app
+    working_dir: /app
+    command: python main.py
+    ports:
+      - "3006:8080"
+
+  cpp:
+    image: gcc:latest
+    volumes:
+      - ./cpp:/app
+    working_dir: /app
+    command: bash -c "g++ main.cpp -o main && ./main"
+    ports:
+      - "3007:8080"
+
+  nodejs:
+    image: node:latest
+    volumes:
+      - ./nodejs:/app
+    working_dir: /app
+    command: node app.js
+    ports:
+      - "3008:8080"  
