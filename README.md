@@ -1,26 +1,40 @@
-# Docker Language Assignment
+# Advanced Server-Side Languages (ASL)
 
-This repository contains my Week 1 Docker assignment for Advanced Server-Side Languages (ASL).
+This repository contains coursework and assignments completed for Advanced Server-Side Languages (ASL) at Full Sail University.
 
-## Assignment Overview
-
-The objective of this project was to create and execute Docker containers for multiple programming languages. Each container was configured to:
-
-1. Display the message:
-
-```
-Hello ASL!
-```
-
-2. Display the current date and time.
-
-Each programming language was isolated within its own Docker container and built using a dedicated Dockerfile.
+The course focuses on modern server-side development concepts including Docker, RESTful API design, ExpressJS, MVC architecture, Sequelize ORM, template engines, file uploads, and full CRUD application development.
 
 ---
 
-## Languages Implemented
+# Course Technologies
 
-The following languages were successfully containerized and executed:
+Throughout this course the following technologies were used:
+
+- Node.js
+- ExpressJS
+- Docker
+- MySQL
+- Sequelize ORM
+- Twig Template Engine
+- HTML5
+- CSS3
+- RESTful APIs
+- MVC Architecture
+- express-fileupload
+- Git
+- GitHub
+
+---
+
+# Week 1 – Docker Fundamentals
+
+## Overview
+
+The objective of Week 1 was to learn Docker fundamentals and containerized development workflows.
+
+Multiple language environments were containerized and executed independently.
+
+### Languages Containerized
 
 - PHP
 - Ruby
@@ -32,72 +46,193 @@ The following languages were successfully containerized and executed:
 - Java
 - Go (Golang)
 
----
+### Concepts Learned
 
-## Project Structure
-
-```text
-docker-assignment/
-├── php/
-├── ruby/
-├── python/
-├── lua/
-├── nodejs/
-├── rust/
-├── c/
-├── java/
-└── golang/
-```
-
-Each folder contains:
-
-- A Dockerfile
-- Source code for the language
-- Commands required to build and execute the container
-
----
-
-## Example Build and Run Commands
-
-Build the image:
-
-```bash
-docker build -t asl-python .
-```
-
-Run the container:
-
-```bash
-docker run --rm asl-python
-```
-
-Example output:
-
-```text
-Hello ASL!
-Current date: 2026-06-01 20:33:25
-```
-
----
-
-## Learning Outcomes
-
-This assignment provided hands-on experience with:
-
-- Docker images
-- Docker containers
+- Docker Images
+- Docker Containers
 - Dockerfiles
-- Building custom images
-- Running applications inside containers
-- Working with interpreted and compiled languages
-- Cross-language development environments
+- Building Custom Images
+- Container Execution
+- Multi-Language Development Environments
+- Docker Desktop
+- Container Networking
 
 ---
 
-## Author
+# Week 2 – HTTP & RESTful APIs
+
+## Overview
+
+Week 2 focused on HTTP fundamentals and RESTful API design using ExpressJS.
+
+A RESTful Contacts API was developed that supports filtering, sorting, pagination, custom headers, and RESTful routing. Additional exercises focused on HTTP request methods, headers, status codes, and client/server communication.
+
+### Features
+
+- RESTful Endpoints
+- CRUD Operations
+- HTTP Methods
+- Query Parameters
+- Custom Headers
+- Sorting
+- Filtering
+- Pagination
+- JSON Responses
+
+### Concepts Learned
+
+- GET
+- POST
+- PUT
+- DELETE
+- HTTP Status Codes
+- Request Headers
+- Response Headers
+- REST Design Principles
+
+---
+
+# Week 3 – Database Abstraction Layering
+
+## Overview
+
+Week 3 focused on database abstraction layering and Sequelize ORM. This assignment introduced the Space Object Library API and established the database-driven foundation for the Star Tracker project.
+
+### Assignment
+
+Space Object Library API
+
+### Features
+
+- Stars API
+- Planets API
+- Galaxies API
+- Full CRUD Operations
+- Sequelize Models
+- Database Migrations
+- Seeded Data
+- Resource Relationships
+- RESTful Routing
+
+### Concepts Practiced
+
+- Database Abstraction Layering
+- Sequelize ORM
+- Models
+- Migrations
+- Seeders
+- Model Relationships
+- RESTful API Endpoints
+- MySQL Integration
+- Dockerized Node/MySQL Environment
+
+---
+
+# Week 4 – Space Library Tracker UI
+
+## Overview
+
+Week 4 expanded the Space Object Library API into a browser-based MVC application. The Star Tracker application was updated to support full CRUD management through an HTML5 interface while continuing to support JSON API responses.
+
+### Assignment
+
+Space Library Tracker UI
+
+### Features
+
+- HTML CRUD for Stars
+- HTML CRUD for Planets
+- HTML CRUD for Galaxies
+- JSON API Support
+- Content Negotiation (HTML and JSON)
+- Twig Template Engine
+- MVC Architecture
+- Image Uploads using express-fileupload
+- Sequelize ORM
+- Custom Middleware
+- RESTful Routing
+- Basic CSS Styling
+- Responsive Layout
+- Branded SOLINYC Header and Footer
+
+### Image Upload Support
+
+Uploaded images are stored in:
+
+```
+public/uploads/stars
+public/uploads/planets
+public/uploads/galaxies
+```
+
+---
+
+# Project Structure
+
+```
+Week_1/
+Week_2/
+Week_3/
+Week_4/
+
+assignment/
+├── controllers/
+├── middlewares/
+├── migrations/
+├── models/
+├── public/
+│   ├── stylesheets/
+│   └── uploads/
+├── routes/
+├── views/
+└── seeders/
+```
+
+---
+
+# Development Environment
+
+This repository was developed using:
+
+- Docker Desktop
+- Node.js
+- ExpressJS
+- MySQL
+- Sequelize
+- Twig
+- Visual Studio Code
+- Git
+- GitHub
+
+---
+
+# Learning Outcomes
+
+This course provided hands-on experience with:
+
+- Containerized Development
+- RESTful API Design
+- MVC Architecture
+- Database Abstraction Layers
+- Sequelize ORM
+- ExpressJS Routing
+- Template Engines
+- File Upload Handling
+- CRUD Application Development
+- HTML & JSON Content Negotiation
+- Git Source Control
+- GitHub Collaboration
+
+---
+
+# Author
 
 Stephanie Olivares
 
-Advanced Server-Side Languages (ASL)
+SOLINYC LLC
+
+Bachelor of Science in Web Development
+
+Advanced Server-Side Languages
 
 Full Sail University
