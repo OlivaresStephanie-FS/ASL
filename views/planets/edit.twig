@@ -1,0 +1,7 @@
+<h1>Edit {{ planet.name }}</h1>
+
+{% block pageName %}Edit {{ planet.name }}{% endblock %}
+
+{% block main_content %}
+    {% include 'planets/_form.twig' with { "planet": planet } %}
+{% endblock %}

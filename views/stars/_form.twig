@@ -1,0 +1,59 @@
+{% if star is defined and star %}
+<form action="/stars/{{ star.id }}" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="{{ star.id }}" />
+{% else %}
+<form action="/stars" method="POST" enctype="multipart/form-data">
+{% endif %}
+
+	<div class="control">
+		<label>Name:</label>
+		<input
+			type="text"
+			name="name"
+			{% if star is defined and star %}
+			value="{{ star.name }}"
+			{% endif %}
+		/>
+	</div>
+
+	<div class="control">
+		<label>Size:</label>
+		<input
+			type="text"
+			name="size"
+			{% if star is defined and star %}
+			value="{{ star.size }}"
+			{% endif %}
+		/>
+	</div>
+
+	<div class="control">
+		<label>Description:</label>
+		<textarea name="description">{% if star is defined and star %}{{ star.description }}{% endif %}</textarea>
+	</div>
+
+	<div class="control">
+		<label>Galaxy ID:</label>
+		<input
+			type="text"
+			name="GalaxyId"
+			{% if star is defined and star %}
+			value="{{ star.GalaxyId }}"
+			{% endif %}
+		/>
+	</div>
+
+	<div class="control">
+		<label for="image">Upload Star Image:</label>
+		<input type="file" name="image" id="image" />
+	</div>
+
+	<button type="submit">
+		{% if star is defined and star %}
+		Update
+		{% else %}
+		Create
+		{% endif %}
+		Star
+	</button>
+</form>

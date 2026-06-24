@@ -1,0 +1,7 @@
+<h1>Edit {{ galaxy.name }}</h1>
+
+{% block pageName %}Edit {{ galaxy.name }}{% endblock %}
+
+{% block main_content %}
+    {% include 'galaxies/_form.twig' with { "galaxy": galaxy } %}
+{% endblock %}

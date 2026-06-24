@@ -1,0 +1,15 @@
+<h1>{{ star.name }}</h1>
+
+<p>
+	<strong>Name:</strong> {{ star.name }} <br />
+	<strong>Size:</strong> {{ star.size }} <br />
+	<strong>Description:</strong> {{ star.description }} <br />
+	<strong>Galaxy ID:</strong> {{ star.GalaxyId }} <br />
+	<img src="/uploads/stars/{{ star.id }}.jpg" alt="{{ star.name }}" width="300" />
+</p>
+
+<p>
+	<a href="/stars/{{ star.id }}/edit">Edit This Star</a><br />
+	<a href="/stars/{{ star.id }}/delete">Delete This Star</a><br />
+	<a href="/stars">&lt;&lt; Go Back To All</a><br />
+</p>

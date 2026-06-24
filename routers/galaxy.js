@@ -1,18 +1,25 @@
-// Load in Express framework
-const express = require(`express`)
+const express = require("express");
 
 // Load in our controller/action instances
-const galaxyCtlr = require(`../controllers/galaxy.js`)
+const galaxyCtrl = require("../controllers/galaxy.js");
+const { uploadGalaxy } = require("../middlewares");
 
 // Create a new Router instance and call it "router"
-const router = new express.Router()
+const router = new express.Router();
 
-// RESTful resource mappings
-router.get(`/`, galaxyCtlr.index)
-router.post(`/`, galaxyCtlr.create)
-router.get(`/:id`, galaxyCtlr.show) 
-router.put(`/:id`, galaxyCtlr.update) 
-router.delete(`/:id`, galaxyCtlr.remove) 
+// JSON API routes
+router.get("/", galaxyCtrl.index);
+router.post("/", galaxyCtrl.create, uploadGalaxy);
 
-// export "router"
-module.exports = router
+// HTML5 / Twig routes
+router.get("/new", galaxyCtrl.form);
+router.get("/:id(\\d+)/edit", galaxyCtrl.form);
+router.get("/:id(\\d+)/delete", galaxyCtrl.remove);
+router.post("/:id(\\d+)", galaxyCtrl.update, uploadGalaxy);
+
+// JSON API routes with :id
+router.get("/:id(\\d+)", galaxyCtrl.show);
+router.put("/:id(\\d+)", galaxyCtrl.update);
+router.delete("/:id(\\d+)", galaxyCtrl.remove);
+
+module.exports = router;

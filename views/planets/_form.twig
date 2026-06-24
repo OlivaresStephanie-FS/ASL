@@ -1,0 +1,48 @@
+{% if planet is defined and planet %}
+<form action="/planets/{{ planet.id }}" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="{{ planet.id }}" />
+{% else %}
+<form action="/planets" method="POST" enctype="multipart/form-data">
+{% endif %}
+
+	<div class="control">
+		<label>Name:</label>
+		<input
+			type="text"
+			name="name"
+			{% if planet is defined and planet %}
+			value="{{ planet.name }}"
+			{% endif %}
+		/>
+	</div>
+
+	<div class="control">
+		<label>Size:</label>
+		<input
+			type="text"
+			name="size"
+			{% if planet is defined and planet %}
+			value="{{ planet.size }}"
+			{% endif %}
+		/>
+	</div>
+
+	<div class="control">
+		<label>Description:</label>
+		<textarea name="description">{% if planet is defined and planet %}{{ planet.description }}{% endif %}</textarea>
+	</div>
+
+	<div class="control">
+		<label for="image">Upload Planet Image:</label>
+		<input type="file" name="image" id="image" />
+	</div>
+
+	<button type="submit">
+		{% if planet is defined and planet %}
+		Update
+		{% else %}
+		Create
+		{% endif %}
+		Planet
+	</button>
+</form>

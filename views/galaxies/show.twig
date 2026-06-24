@@ -1,0 +1,14 @@
+<h1>{{ galaxy.name }}</h1>
+
+<p>
+	<strong>Name:</strong> {{ galaxy.name }} <br />
+	<strong>Size:</strong> {{ galaxy.size }} <br />
+	<strong>Description:</strong> {{ galaxy.description }} <br />
+	<img src="/uploads/galaxies/{{ galaxy.id }}.jpg" alt="{{ galaxy.name }}" width="300" />
+</p>
+
+<p>
+	<a href="/galaxies/{{ galaxy.id }}/edit">Edit This Galaxy</a><br />
+	<a href="/galaxies/{{ galaxy.id }}/delete">Delete This Galaxy</a><br />
+	<a href="/galaxies">&lt;&lt; Go Back To All</a><br />
+</p>

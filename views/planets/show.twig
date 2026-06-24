@@ -1,0 +1,14 @@
+<h1>{{ planet.name }}</h1>
+
+<p>
+	<strong>Name:</strong> {{ planet.name }} <br />
+	<strong>Size:</strong> {{ planet.size }} <br />
+	<strong>Description:</strong> {{ planet.description }} <br />
+	<img src="/uploads/planets/{{ planet.id }}.jpg" alt="{{ planet.name }}" width="300" />
+</p>
+
+<p>
+	<a href="/planets/{{ planet.id }}/edit">Edit This Planet</a><br />
+	<a href="/planets/{{ planet.id }}/delete">Delete This Planet</a><br />
+	<a href="/planets">&lt;&lt; Go Back To All</a><br />
+</p>
