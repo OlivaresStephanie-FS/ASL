@@ -1,8 +1,19 @@
+const path = require("path");
 const { Planet, Star } = require("../models");
 
 const wantsJson = (req) => {
 	const contentType = req.get("Content-Type") || "";
 	return contentType.includes("application/json");
+};
+
+const uploadPlanetImage = async (req, id) => {
+	if (req.files && req.files.image) {
+		const extension = path.extname(req.files.image.name) || ".jpg";
+
+		await req.files.image.mv(
+			`${__dirname}/../public/uploads/planets/${id}${extension}`
+		);
+	}
 };
 
 const index = async (req, res) => {
@@ -29,32 +40,32 @@ const show = async (req, res) => {
 	res.status(200).render("planets/show", { planet });
 };
 
-const create = async (req, res, next) => {
+const create = async (req, res) => {
 	const planet = await Planet.create(req.body);
 
-	req.planetId = planet.id;
+	await uploadPlanetImage(req, planet.id);
 
 	if (wantsJson(req)) {
 		return res.status(201).json(planet);
 	}
 
-	await next();
 	res.redirect(302, `/planets/${planet.id}`);
 };
 
-const update = async (req, res, next) => {
+const update = async (req, res) => {
+	const id = req.params.id;
+
 	const [updated] = await Planet.update(req.body, {
-		where: { id: req.params.id },
+		where: { id },
 	});
 
-	req.planetId = req.params.id;
+	await uploadPlanetImage(req, id);
 
 	if (wantsJson(req)) {
 		return res.status(200).json({ updated });
 	}
 
-	await next();
-	res.redirect(302, `/planets/${req.params.id}`);
+	res.redirect(302, `/planets/${id}`);
 };
 
 const remove = async (req, res) => {
@@ -72,7 +83,6 @@ const remove = async (req, res) => {
 const form = async (req, res) => {
 	if (typeof req.params.id !== "undefined") {
 		const planet = await Planet.findByPk(req.params.id);
-
 		res.render("planets/_form.twig", { planet });
 	} else {
 		res.render("planets/_form.twig", { planet: null });

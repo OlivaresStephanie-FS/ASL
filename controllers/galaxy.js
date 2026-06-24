@@ -1,8 +1,19 @@
+const path = require("path");
 const { Galaxy, Star } = require("../models");
 
 const wantsJson = (req) => {
 	const contentType = req.get("Content-Type") || "";
 	return contentType.includes("application/json");
+};
+
+const uploadGalaxyImage = async (req, id) => {
+	if (req.files && req.files.image) {
+		const extension = path.extname(req.files.image.name) || ".jpg";
+
+		await req.files.image.mv(
+			`${__dirname}/../public/uploads/galaxies/${id}${extension}`
+		);
+	}
 };
 
 const index = async (req, res) => {
@@ -29,32 +40,32 @@ const show = async (req, res) => {
 	res.status(200).render("galaxies/show", { galaxy });
 };
 
-const create = async (req, res, next) => {
+const create = async (req, res) => {
 	const galaxy = await Galaxy.create(req.body);
 
-	req.galaxyId = galaxy.id;
+	await uploadGalaxyImage(req, galaxy.id);
 
 	if (wantsJson(req)) {
 		return res.status(201).json(galaxy);
 	}
 
-	await next();
 	res.redirect(302, `/galaxies/${galaxy.id}`);
 };
 
-const update = async (req, res, next) => {
+const update = async (req, res) => {
+	const id = req.params.id;
+
 	const [updated] = await Galaxy.update(req.body, {
-		where: { id: req.params.id },
+		where: { id },
 	});
 
-	req.galaxyId = req.params.id;
+	await uploadGalaxyImage(req, id);
 
 	if (wantsJson(req)) {
 		return res.status(200).json({ updated });
 	}
 
-	await next();
-	res.redirect(302, `/galaxies/${req.params.id}`);
+	res.redirect(302, `/galaxies/${id}`);
 };
 
 const remove = async (req, res) => {
@@ -72,7 +83,6 @@ const remove = async (req, res) => {
 const form = async (req, res) => {
 	if (typeof req.params.id !== "undefined") {
 		const galaxy = await Galaxy.findByPk(req.params.id);
-
 		res.render("galaxies/_form.twig", { galaxy });
 	} else {
 		res.render("galaxies/_form.twig", { galaxy: null });
