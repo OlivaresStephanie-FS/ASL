@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 			});
 		}
 	}
-	Planet.init(
+	Planet.init( // Initialize the Planet model with its attributes and options
 		{
 			name: DataTypes.STRING,
 			size: DataTypes.INTEGER,

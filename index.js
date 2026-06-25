@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static("public"));
 
 // Load in our body-parser middleware
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); // Import the 'body-parser' middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -22,14 +22,14 @@ app.use(express.json());
 app.use(fileUpload());
 
 // Configure Twig
-app.set("view engine", "twig");
-app.set("views", __dirname + "/views");
+app.set("view engine", "twig"); // Set the view engine to Twig for rendering templates
+app.set("views", __dirname + "/views"); // Set the directory for Twig templates
 
 // Load in our RESTful routers
 const routers = require("./routers/index.js");
 
 // Home page welcome middleware
-app.get("/", async (req, res) => {
+app.get("/", async (req, res) => { // Handle the root route ("/") and render the home page
 	const star = await Star.findOne();
 
 	res.status(200).render("home/home", {
